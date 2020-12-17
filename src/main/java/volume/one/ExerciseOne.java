@@ -1,6 +1,6 @@
 package volume.one;
 
-public class Ex1 {
+public class ExerciseOne {
     static  int c;
     static char v;
     public static void main(String[] args) {
