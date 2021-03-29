@@ -1,14 +1,14 @@
 package volume.three;
 
 import java.util.Random;
-//Exercise 2:Write a program that generates 25 random int values.
-// For each value, use an if-else statement to classify it as greater than, less than, or equal to a second randomly generated value.
+//Exercise 3: Modify Exercise 2 so that your code is surrounded by an “infinite” while loop.
+// It will then run until you interrupt it from the keyboard (typically by pressing Control-C).
 public class ExerciseTwo {
     public static void main(String[] args) {
         int result1;
         int result2;
         Random rand =new Random();
-        for(int i=1;i<=25;i++){
+        while(true){
             result1=rand.nextInt(1000);
             result2=rand.nextInt(1000);
             System.out.println("first randomly generated value: "+result1+" and the second value: "+result2 );
