@@ -4,6 +4,7 @@ package volume.six;
 // Derive a class Stem from Root that also contains an instance of each “component.”
 // All classes should have default constructors that print a message about that class.
 //Exercise 10:Modify the previous exercise so that each class only has non-default constructors.
+//Exercise 12: Add a proper hierarchy of dispose( ) methods to all the classes in Exercise 9.
 class Root {
 
     Component1 component1 = new Component1('c');
@@ -13,11 +14,18 @@ class Root {
     Root(char a, int i) {
         System.out.println("Class Root");
     }
+    void dispose(){
+        System.out.println("Dispose Root");
+    }
 }
+
 
 class Component1 {
     Component1(char a) {
         System.out.println("Class Component1");
+    }
+    void dispose(){
+        System.out.println("Dispose Com1");
     }
 }
 
@@ -25,11 +33,17 @@ class Component2 {
     Component2(int i) {
         System.out.println("Class Component2");
     }
+    void dispose(){
+        System.out.println("Dispose Com2");
+    }
 }
 
 class Component3 {
     Component3(float f) {
         System.out.println("Class Component3");
+    }
+    void dispose(){
+        System.out.println("Dispose Com3");
     }
 }
 
@@ -42,8 +56,16 @@ public class Stem extends Root {
         super('m', 9);
         System.out.println("Class Stem");
     }
+    void dispose(){
+        System.out.println("Dispose Stem");
+        super.dispose();
+    }
 
     public static void main(String[] args) {
         Stem s = new Stem(true);
+        s.c3.dispose();
+        s.c2.dispose();
+        s.c1.dispose();
+        s.dispose();
     }
 }
