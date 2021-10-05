@@ -1,21 +1,22 @@
 package volume.six.exerciseTwo;
 
+//Exercise 11:  Modify Detergent.java so that it uses delegation.
 class Cleanser {
     private String s = "Cleanser";
 
-    public void append(String a) {
+    void append(String a) {
         s += a;
     }
 
-    public void dilute() {
+    void dilute() {
         append(" dilute()");
     }
 
-    public void apply() {
+    void apply() {
         append(" apply()");
     }
 
-    public void scrub() {
+    void scrub() {
         append(" scrub()");
     }
 
@@ -32,19 +33,36 @@ class Cleanser {
     }
 }
 
-public class Detergent extends Cleanser {
-    // Change a method:
+public class Detergent {
+    private String d = "Detergent";
+    Cleanser cleanse = new Cleanser();
+
     public void scrub() {
         append(" Detergent.scrub()");
-        super.scrub(); // Call base-class version
+        cleanse.scrub(); // Call base-class version
     }
 
-    // Add methods to the interface:
+    public void append(String a) {
+        d += a;
+    }
+
     public void foam() {
         append(" foam()");
     }
 
-    // Test the new class:
+    public void dilute() {
+        cleanse.dilute();
+    }
+
+    public void apply() {
+        cleanse.apply();
+    }
+
+    public String toString() {
+        return d + " " + cleanse;
+    }
+
+
     public static void main(String[] args) {
         Detergent x = new Detergent();
         x.dilute();
