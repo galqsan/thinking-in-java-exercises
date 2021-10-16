@@ -10,4 +10,9 @@ public class Circle extends Shape {
     public void erase() {
         System.out.println("Circle.erase()");
     }
+
+    @Override
+    public void reshape() {
+        System.out.println("Circle.reshape");
+    }
 }
