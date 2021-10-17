@@ -1,0 +1,165 @@
+package volume.seven.exerciseSix;
+
+import java.util.Random;
+
+//Exercise 6:Change Music3.java so that what( ) becomes the root Object method toString( ).
+//Try printing the Instrument objects using System.out.println( ) (without any casting).
+//Exercise 7:Add a new type of Instrument to Music3.java and verify that polymorphism works for your new type.
+//Exercise 8:Modify Music3.java so that it randomly creates Instrument objects the way Shapes.java does.
+class Instrument {
+    void play(Note n) {
+        System.out.println("Instrument.play() " + n);
+    }
+
+    public String toString() {
+        return "Instrument";
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Instrument");
+    }
+}
+
+class Wind extends Instrument {
+    void play(Note n) {
+        System.out.println("Wind.play() " + n);
+    }
+
+    public String toString() {
+        return "Wind";
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Wind");
+    }
+}
+
+class Percussion extends Instrument {
+    void play(Note n) {
+        System.out.println("Percussion.play() " + n);
+    }
+
+    public String toString() {
+        return "Percussion";
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Percussion");
+    }
+}
+
+class Stringed extends Instrument {
+    void play(Note n) {
+        System.out.println("Stringed.play() " + n);
+    }
+
+    public String toString() {
+        return "Stringed";
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Stringed");
+    }
+}
+
+class Brass extends Wind {
+    void play(Note n) {
+        System.out.println("Brass.play() " + n);
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Brass");
+    }
+}
+
+class Woodwind extends Wind {
+    void play(Note n) {
+        System.out.println("Woodwind.play() " + n);
+    }
+
+    public String toString() {
+        return "Woodwind";
+    }
+}
+
+class Violin extends Stringed {
+    void play(Note n) {
+        System.out.println("Violin.play() " + n);
+    }
+
+    void adjust() {
+        System.out.println("Adjusting Violin");
+    }
+
+    public String toString() {
+        return "Violin";
+    }
+}
+
+public class Music3 {
+    // Doesn’t care about type, so new types
+// added to the system still work right:
+    public static void tune(Instrument i) {
+// ...
+        i.play(Note.MIDDLE_C);
+    }
+
+    Random random = new Random(47);
+
+    public Instrument next() {
+        switch (random.nextInt(6)) {
+            default:
+            case 0:
+                return new Wind();
+            case 1:
+                return new Stringed();
+            case 2:
+                return new Percussion();
+            case 3:
+                return new Brass();
+            case 4:
+                return new Woodwind();
+            case 5:
+                return new Violin();
+
+        }
+    }
+
+    public static void tuneAll(Instrument[] e) {
+        for (Instrument i : e)
+            tune(i);
+    }
+
+    public static void main(String[] args) {
+        Music3 m = new Music3();
+        Instrument[] instruments = new Instrument[10];
+// Upcasting during addition to the array:
+        Instrument[] orchestra = {
+                new Wind(),
+                new Percussion(),
+                new Stringed(),
+                new Brass(),
+                new Woodwind(),
+                new Violin()
+        };
+        tuneAll(orchestra);
+        Instrument instrum = new Instrument();
+        Wind w = new Wind();
+        Percussion p = new Percussion();
+        Stringed s = new Stringed();
+        Brass b = new Brass();
+        Woodwind woodwind = new Woodwind();
+        System.out.println(w);
+        System.out.println(p);
+        System.out.println(s);
+        System.out.println(b);
+        System.out.println(woodwind);
+        System.out.println(instrum);
+        System.out.println("Random instruments");
+        for (int i = 0; i < instruments.length; i++) {
+            instruments[i] = m.next();
+        }
+        for (Instrument ins : instruments)
+            System.out.println(ins);
+    }
+}
