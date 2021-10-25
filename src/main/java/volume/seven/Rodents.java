@@ -9,32 +9,58 @@ package volume.seven;
 // Explain what happens.
 //Exercise 12:Modify Exercise 9 so that it demonstrates the order of initialization of the base classes and derived classes.
 // Now add member objects to both the base and derived classes and show the order in which their initialization occurs during construction.
+//Exercise 14:Modify Exercise 12 so that one of the member objects is a shared object with reference counting, and demonstrate that it works properly.
 class Characteristic {
     private String s;
 
+    private static long counter = 0;
+    private final long id = counter++;
+    private int refcount = 0;
+
     Characteristic(String s) {
         this.s = s;
-        System.out.println("Characteristic: " + s + " ");
+        System.out.println("Characteristic: " + s + " " + id);
 
+    }
+
+    public void addRef() {
+        refcount++;
+    }
+
+    protected void dispose() {
+        if (--refcount == 0) {
+            System.out.println("dispose " + this);
+        }
     }
 
     public String toString() {
-        return "Characteristic ";
+        return "Characteristic " + id;
     }
+
 
 }
 
 class Description {
     private String s;
+    Characteristic characteristic;
+    private static long counter = 0;
+    private final long id = counter++;
 
     Description(String s, Characteristic characteristic) {
         this.s = s;
-        System.out.println(" Description: " + s);
+        System.out.println(" Description: " + s + " " + id);
+        this.characteristic = characteristic;
+        this.characteristic.addRef();
 
     }
 
+    protected void dispose() {
+        System.out.println("dispose " + this);
+        characteristic.dispose();
+    }
+
     public String toString() {
-        return "Description ";
+        return "Description " + id;
     }
 }
 
@@ -131,6 +157,8 @@ public class Rodents {
         for (Rodent ro : rodent) {
             ro.live();
             ro.move();
+            ro.de.dispose();
+
         }
         Rodent r = new Mouse();
         //it print
