@@ -10,6 +10,8 @@ package volume.seven;
 //Exercise 12:Modify Exercise 9 so that it demonstrates the order of initialization of the base classes and derived classes.
 // Now add member objects to both the base and derived classes and show the order in which their initialization occurs during construction.
 //Exercise 14:Modify Exercise 12 so that one of the member objects is a shared object with reference counting, and demonstrate that it works properly.
+//Volume 8:Exercise 1: Modify Exercise 9 in the previous chapter so that Rodent is an abstract class.
+// Make the methods of Rodent abstract whenever possible.
 class Characteristic {
     private String s;
 
@@ -20,7 +22,6 @@ class Characteristic {
     Characteristic(String s) {
         this.s = s;
         System.out.println("Characteristic: " + s + " " + id);
-
     }
 
     public void addRef() {
@@ -51,7 +52,6 @@ class Description {
         System.out.println(" Description: " + s + " " + id);
         this.characteristic = characteristic;
         this.characteristic.addRef();
-
     }
 
     protected void dispose() {
@@ -64,28 +64,20 @@ class Description {
     }
 }
 
-class Rodent {
+abstract class Rodent {
 
     Characteristic ch = new Characteristic("have long nails");
     Description de = new Description("are mammals ", ch);
 
-    void eat() {
-        System.out.println("Rodent.eat");
-    }
+    abstract void eat();
+
+    abstract void move();
 
     void live() {
         System.out.println("Rodent.live()");
         this.eat();
     }
 
-    void move() {
-        System.out.println("Rodent.move");
-    }
-
-    Rodent() {
-        System.out.println("Rodent");
-
-    }
 }
 
 class Mouse extends Rodent {
@@ -149,7 +141,6 @@ class Hamster extends Rodent {
 public class Rodents {
     public static void main(String[] args) {
         Rodent rodent[] = {
-                new Rodent(),
                 new Hamster(),
                 new Gerbil(),
                 new Mouse()
