@@ -10,8 +10,7 @@ package volume.seven;
 //Exercise 12:Modify Exercise 9 so that it demonstrates the order of initialization of the base classes and derived classes.
 // Now add member objects to both the base and derived classes and show the order in which their initialization occurs during construction.
 //Exercise 14:Modify Exercise 12 so that one of the member objects is a shared object with reference counting, and demonstrate that it works properly.
-//Volume 8:Exercise 1: Modify Exercise 9 in the previous chapter so that Rodent is an abstract class.
-// Make the methods of Rodent abstract whenever possible.
+//Volume 8:Exercise 7:Change Exercise 9 in the Polymorphism chapter so that Rodent is an interface.
 class Characteristic {
     private String s;
 
@@ -64,28 +63,23 @@ class Description {
     }
 }
 
-abstract class Rodent {
-
+interface Rodent {
     Characteristic ch = new Characteristic("have long nails");
     Description de = new Description("are mammals ", ch);
 
-    abstract void eat();
+    void eat();
 
-    abstract void move();
+    void move();
 
-    void live() {
-        System.out.println("Rodent.live()");
-        this.eat();
-    }
+    void live();
 
 }
 
-class Mouse extends Rodent {
+class Mouse implements Rodent {
     Characteristic ch = new Characteristic("have slender tail with hair");
     Description de = new Description(" they have 20 chromosomes ", ch);
 
-    @Override
-    void eat() {
+    public void eat() {
         System.out.println("Mouse.eat");
     }
 
@@ -93,48 +87,61 @@ class Mouse extends Rodent {
         System.out.println("Mouse");
     }
 
-    @Override
-    void move() {
+    public void move() {
         System.out.println("Mouse.move");
+    }
+
+    public void live() {
+        System.out.println("Mouse.live()");
+        this.eat();
     }
 }
 
-class Gerbil extends Rodent {
+class Gerbil implements Rodent {
     Characteristic ch = new Characteristic("have long hind feet and fairly large ears");
     Description de = new Description(" they build extensive networks of underground tunnels ", ch);
 
-    @Override
-    void eat() {
+    public void eat() {
         System.out.println("Gerbil.eat");
     }
 
     @Override
-    void move() {
+    public void move() {
         System.out.println("Gerbil.move");
     }
 
     Gerbil() {
         System.out.println("Gerbil");
     }
+
+    public void live() {
+        System.out.println("Gerbil.live()");
+        this.eat();
+    }
 }
 
 
-class Hamster extends Rodent {
+class Hamster implements Rodent {
     Characteristic ch = new Characteristic("have very short tail");
     Description de = new Description(" they are kept as pets ", ch);
 
-    @Override
-    void eat() {
+
+    public void eat() {
         System.out.println("Hamster.eat");
     }
 
-    @Override
-    void move() {
+
+    public void move() {
         System.out.println("Hamster.move");
     }
 
     Hamster() {
         System.out.println("Hamster");
+    }
+
+    public void live() {
+        System.out.println("Hamster.live()");
+        this.eat();
     }
 }
 
