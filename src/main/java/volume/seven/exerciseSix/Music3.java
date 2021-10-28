@@ -6,18 +6,16 @@ import java.util.Random;
 //Try printing the Instrument objects using System.out.println( ) (without any casting).
 //Exercise 7:Add a new type of Instrument to Music3.java and verify that polymorphism works for your new type.
 //Exercise 8:Modify Music3.java so that it randomly creates Instrument objects the way Shapes.java does.
-class Instrument {
-    void play(Note n) {
-        System.out.println("Instrument.play() " + n);
-    }
+//Volume 8:Exercise 9:Refactor Musics.java by moving the common methods in Wind, Percussion and Stringed into an abstract class.
+abstract class Instrument {
+    abstract void play(Note n);
 
     public String toString() {
         return "Instrument";
     }
 
-    void adjust() {
-        System.out.println("Adjusting Instrument");
-    }
+    abstract void adjust();
+
 }
 
 class Wind extends Instrument {
@@ -143,7 +141,6 @@ public class Music3 {
                 new Violin()
         };
         tuneAll(orchestra);
-        Instrument instrum = new Instrument();
         Wind w = new Wind();
         Percussion p = new Percussion();
         Stringed s = new Stringed();
@@ -154,7 +151,6 @@ public class Music3 {
         System.out.println(s);
         System.out.println(b);
         System.out.println(woodwind);
-        System.out.println(instrum);
         System.out.println("Random instruments");
         for (int i = 0; i < instruments.length; i++) {
             instruments[i] = m.next();
