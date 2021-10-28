@@ -7,19 +7,24 @@ import java.util.Random;
 //Exercise 7:Add a new type of Instrument to Music3.java and verify that polymorphism works for your new type.
 //Exercise 8:Modify Music3.java so that it randomly creates Instrument objects the way Shapes.java does.
 //Volume 8:Exercise 9:Refactor Musics.java by moving the common methods in Wind, Percussion and Stringed into an abstract class.
+//Volume 8:Exercise 10:Modify Musics.java by adding a Playable interface.
+// Move the play( ) declaration from Instrument to Playable.
+// Add Playable to the derived classes by including it in the implement s list.
+// Change tune( ) so that it takes a Playable instead of an Instrument.
 abstract class Instrument {
-    abstract void play(Note n);
-
     public String toString() {
         return "Instrument";
     }
 
     abstract void adjust();
-
 }
 
-class Wind extends Instrument {
-    void play(Note n) {
+interface Playable {
+    void play(Note n);
+}
+
+class Wind extends Instrument implements Playable {
+    public void play(Note n) {
         System.out.println("Wind.play() " + n);
     }
 
@@ -32,8 +37,8 @@ class Wind extends Instrument {
     }
 }
 
-class Percussion extends Instrument {
-    void play(Note n) {
+class Percussion extends Instrument implements Playable {
+    public void play(Note n) {
         System.out.println("Percussion.play() " + n);
     }
 
@@ -46,8 +51,8 @@ class Percussion extends Instrument {
     }
 }
 
-class Stringed extends Instrument {
-    void play(Note n) {
+class Stringed extends Instrument implements Playable {
+    public void play(Note n) {
         System.out.println("Stringed.play() " + n);
     }
 
@@ -60,8 +65,8 @@ class Stringed extends Instrument {
     }
 }
 
-class Brass extends Wind {
-    void play(Note n) {
+class Brass extends Wind implements Playable {
+    public void play(Note n) {
         System.out.println("Brass.play() " + n);
     }
 
@@ -71,7 +76,7 @@ class Brass extends Wind {
 }
 
 class Woodwind extends Wind {
-    void play(Note n) {
+    public void play(Note n) {
         System.out.println("Woodwind.play() " + n);
     }
 
@@ -81,7 +86,7 @@ class Woodwind extends Wind {
 }
 
 class Violin extends Stringed {
-    void play(Note n) {
+    public void play(Note n) {
         System.out.println("Violin.play() " + n);
     }
 
@@ -97,9 +102,9 @@ class Violin extends Stringed {
 public class Music3 {
     // Doesn’t care about type, so new types
 // added to the system still work right:
-    public static void tune(Instrument i) {
+    public static void tune(Playable p) {
 // ...
-        i.play(Note.MIDDLE_C);
+        p.play(Note.MIDDLE_C);
     }
 
     Random random = new Random(47);
@@ -123,8 +128,8 @@ public class Music3 {
         }
     }
 
-    public static void tuneAll(Instrument[] e) {
-        for (Instrument i : e)
+    public static void tuneAll(Playable[] e) {
+        for (Playable i : e)
             tune(i);
     }
 
@@ -132,7 +137,7 @@ public class Music3 {
         Music3 m = new Music3();
         Instrument[] instruments = new Instrument[10];
 // Upcasting during addition to the array:
-        Instrument[] orchestra = {
+        Playable[] orchestra = {
                 new Wind(),
                 new Percussion(),
                 new Stringed(),
@@ -151,7 +156,7 @@ public class Music3 {
         System.out.println(s);
         System.out.println(b);
         System.out.println(woodwind);
-        System.out.println("Random instruments");
+        System.out.println("Random instruments!!");
         for (int i = 0; i < instruments.length; i++) {
             instruments[i] = m.next();
         }
