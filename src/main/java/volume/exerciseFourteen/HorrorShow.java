@@ -5,6 +5,7 @@ package volume.exerciseFourteen;
 // Create a class by implementing the new interface and also inheriting from a concrete class.
 // Now write four methods, each of which takes one of the four interfaces as an argument.
 // In main( ), create an object of your class and pass it to each of the methods.
+//Exercise 15:Modify the previous exercise by creating an abstract class and inheriting that into the derived class.
 interface Monster {
     void menace();
 
@@ -29,7 +30,16 @@ interface Vampire extends Monster, Lethal, Dangerous {
     void drinkBlood();
 }
 
-class DangerousVampire implements Vampire {
+class BadMonster {
+    String s;
+
+    void s(String s) {
+        this.s = s;
+        System.out.println(s);
+    }
+}
+
+class DangerousVampire extends BadMonster implements Vampire {
 
     @Override
     public void menace() {
@@ -67,7 +77,15 @@ class DangerousVampire implements Vampire {
     }
 }
 
-public class HorrorShow extends DangerousVampire {
+abstract class Show {
+    abstract void h();
+}
+
+public class HorrorShow extends Show {
+    void h() {
+        System.out.println("h()");
+    }
+
     static void v(Monster x) {
         x.menace();
         x.terror();
@@ -88,10 +106,11 @@ public class HorrorShow extends DangerousVampire {
     }
 
     public static void main(String[] args) {
-        HorrorShow show = new HorrorShow();
-        u(show);
-        m(show);
-        v(show);
-        f(show);
+        Vampire vampire = new DangerousVampire();
+        u(vampire);
+        m(vampire);
+        v(vampire);
+        f(vampire);
+
     }
 }
