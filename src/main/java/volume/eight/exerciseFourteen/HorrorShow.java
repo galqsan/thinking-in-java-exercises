@@ -1,4 +1,4 @@
-package volume.exerciseFourteen;
+package volume.eight.exerciseFourteen;
 
 //Exercise 14:Create three interfaces, each with two methods.
 // Inherit a new interface that combines the three, adding a new method.
