@@ -2,6 +2,7 @@ package volume.nine;
 
 //Exercise 2: Create a class that holds a String, and has a toString( ) method that displays this String.
 // Add several instances of your new class to a Sequence object, then display them.
+//Exercise 4:Add a method to the class Sequence.SequenceSelector that produces the reference to the outer class Sequence.
 interface Selector {
     boolean end();
 
@@ -37,6 +38,10 @@ public class Sequence {
 
     private class SequenceSelector implements Selector {
         private int i = 0;
+
+        public Sequence getSequence() {
+            return Sequence.this;
+        }
 
         public boolean end() {
             return i == items.length;
