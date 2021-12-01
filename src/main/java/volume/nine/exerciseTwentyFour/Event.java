@@ -9,11 +9,11 @@ public abstract class Event {
         start();
     }
 
-    public void start() { // Allows restarting
+    void start() { // Allows restarting
         eventTime = System.nanoTime() + delayTime;
     }
 
-    public boolean ready() {
+    boolean ready() {
         return System.nanoTime() >= eventTime;
     }
 
