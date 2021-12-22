@@ -6,22 +6,18 @@ import java.util.*;
 // Print the results to show ordering by hash code.
 // Extract the pairs, sort by key, and place the result into a LinkedHashMap.
 // Show that the insertion order is maintained.
+//Exercise 19:Repeat the previous exercise with a HashSet and LinkedHashSet.
 public class ExerciseEighteen {
     public static void main(String[] args) {
-        Map<String, String> linkedMap = new LinkedHashMap<>();
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("5", "Five");
-        hashMap.put("1", "One");
-        hashMap.put("2", "Two");
-        hashMap.put("4", "Four");
-        hashMap.put("3", "Three");
-        System.out.println("HashMap: " + hashMap);
-        TreeSet<String> treeSet = new TreeSet<>(hashMap.keySet());
-        Iterator<String> it = treeSet.iterator();
-        while (it.hasNext()) {
-            String i = it.next();
-            linkedMap.put(i, hashMap.get(i));
-        }
-        System.out.println("LinkedHashMap: " + linkedMap);
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add( "Five");
+        hashSet.add( "One");
+        hashSet.add( "Two");
+        hashSet.add( "Four");
+        hashSet.add( "Three");
+        System.out.println("HashMap: " + hashSet);
+        SortedSet<String> treeSet = new TreeSet<>(hashSet);
+        Set<String> linkedSet = new LinkedHashSet<>(treeSet);
+        System.out.println("LinkedHashMap: " + linkedSet);
     }
 }
