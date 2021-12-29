@@ -25,4 +25,6 @@ hs_err_pid*
 .idea/
 .gradle
 *.iml
+bash.exe.stackdump
+java-doc/
 /build/
