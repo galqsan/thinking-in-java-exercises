@@ -10,8 +10,13 @@ import java.util.Map;
 // Count the words as you read them in, and for each word in the file, record in the ArrayList<Integer> the word count associated with that word—this is, in effect, the location in the file where that word was found.
 public class ExerciseTwentyFive {
     public static void main(String[] args) {
-        String splitter = "\\W+";
         String fileName = "C:\\Repos\\ThinkingInJava\\thinking-in-java-exercises\\src\\main\\java\\volume\\ten\\ExerciseSixteen.java";
+        Map<String, ArrayList<Integer>> map = getWordMapFromFileName(fileName);
+        System.out.println(map);
+    }
+
+    public static Map<String, ArrayList<Integer>> getWordMapFromFileName(String fileName) {
+        String splitter = "\\W+";
         Map<String, ArrayList<Integer>> map = new LinkedHashMap<>();
         int count = 1;
         for (String word : new TextFile(fileName, splitter)) {
@@ -23,6 +28,6 @@ public class ExerciseTwentyFive {
             arrayList.add(count++);
 
         }
-        System.out.println(map);
+        return map;
     }
 }
