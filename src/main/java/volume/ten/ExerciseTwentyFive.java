@@ -15,14 +15,13 @@ public class ExerciseTwentyFive {
         Map<String, ArrayList<Integer>> map = new LinkedHashMap<>();
         int count = 1;
         for (String word : new TextFile(fileName, splitter)) {
-            if (!map.containsKey(word)) {
-                ArrayList<Integer> arrayList = new ArrayList<>();
-                arrayList.add(count++);
+            ArrayList<Integer> arrayList = map.get(word);
+            if (arrayList == null) {
+                arrayList = new ArrayList<>();
                 map.put(word, arrayList);
-            } else {
-                ArrayList<Integer> arrayList = map.get(word);
-                arrayList.add(count++);
             }
+            arrayList.add(count++);
+
         }
         System.out.println(map);
     }
