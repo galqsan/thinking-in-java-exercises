@@ -1,14 +1,20 @@
 package volume.seven.exerciseTwo;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Shapes {
     private static RandomShapeGenerator gen =
-            new RandomShapeGenerator();
+            new RandomShapeGenerator(9);
+    static List<Shape> s = new ArrayList<>();
 
     public static void main(String[] args) {
-        Shape[] s = new Shape[9];
+        Iterator<Shape> it = gen.iterator();
+
 // Fill up the array with shapes:
-        for (int i = 0; i < s.length; i++) {
-            s[i] = gen.next();
+        while (it.hasNext()) {
+            s.add(it.next());
         }
 // Make polymorphic method calls:
         for (Shape shp : s) {
