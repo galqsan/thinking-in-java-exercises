@@ -6,6 +6,8 @@ import java.util.List;
 //Exercise 9:Create three new types of exceptions.
 //Write a class with a method that throws all three.
 //In main( ), call the method but only use a single catch clause that will catch all three types of exceptions.
+//Exercise 13:Modify Exercise 9 by adding a finally clause.
+// Verify that your finally clause is executed, even if a NullPointerException is thrown.
 class FirstException extends Exception {
 }
 
@@ -30,8 +32,11 @@ public class ExerciseNine {
         ExerciseNine exerciseNine = new ExerciseNine();
         try {
             exerciseNine.fillExceptionsList(exceptionsList);
+            throw new NullPointerException();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            System.out.println("Inside the finally ");
         }
     }
 }
