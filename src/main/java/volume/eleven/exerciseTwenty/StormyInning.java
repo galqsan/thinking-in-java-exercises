@@ -2,7 +2,11 @@ package volume.eleven.exerciseTwenty;
 
 //Exercise 20: Modify StormyInning.java by adding an UmpireArgument exception type and methods that throw this exception.
 // Test the modified hierarchy.
-class BaseballException extends Exception {
+//Exercise 29:  Modify all the exception types in StormyInning.java so that they
+//extend RuntimeException, and show that no exception specifications or try blocks are
+//necessary. Remove the ‘//!’ comments and show how the methods can be compiled without
+//specifications.
+class BaseballException extends RuntimeException {
 }
 
 class Foul extends BaseballException {
@@ -19,7 +23,6 @@ abstract class Inning {
     }
 
     public void event() throws BaseballException {
-// Doesn’t actually have to throw anything
     }
 
     public abstract void atBat() throws Strike, Foul, UmpireArgument;
@@ -30,8 +33,7 @@ abstract class Inning {
     }
 }
 
-
-class StormException extends Exception {
+class StormException extends RuntimeException {
 }
 
 class RainedOut extends StormException {
@@ -71,44 +73,14 @@ public class StormyInning extends Inning implements Storm {
     }
 
     public static void main(String[] args) {
-        try {
-            StormyInning si = new StormyInning();
-            System.out.println("First try");
-            si.atBat();
-        } catch (PopFoul e) {
-            System.out.println("Pop foul");
-        } catch (RainedOut e) {
-            System.out.println("Rained out");
-        } catch (BaseballException e) {
-            System.out.println("Generic baseball exception");
-        }
-        try {
-            System.out.println("Second try");
-            Inning i = new StormyInning();
-            i.atBat();
-        } catch (Strike e) {
-            System.out.println("Strike");
-        } catch (Foul e) {
-            System.out.println("Foul");
-        } catch (RainedOut e) {
-            System.out.println("Rained out");
-        } catch (BaseballException e) {
-            System.out.println("Generic baseball exception");
-        }
-        try {
-            System.out.println("try number three");
-            StormyInning si = new StormyInning();
-            si.atBat();
-            si.someOtherEvent();
-        } catch (UmpireArgument e) {
-            System.out.println(
-                    "Umpire Argument");
-        } catch (PopFoul e) {
-            System.out.println("Pop Foul");
-        } catch (BaseballException e) {
-            System.out.println("Generic baseball exception");
-        } catch (RainedOut e) {
-            System.out.println("Rained out");
-        }
+        StormyInning si = new StormyInning();
+        System.out.println("First try");
+        si.atBat();
+        System.out.println("Second try");
+        Inning i = new StormyInning();
+        i.atBat();
+        System.out.println("try number three");
+        si.atBat();
+        si.someOtherEvent();
     }
 }
