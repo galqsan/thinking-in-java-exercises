@@ -1,6 +1,6 @@
 package volume.two;
 // Exercise 5 :  Create a class called Dog containing two Strings: name and says.
-// In main( ), create two dog objects with names “spot” (who says, “Ruff!”) and “scruffy” (who says, “Wurf!”).
+// In main( ), create two dog objects with names "spot" (who says, "Ruff!") and "scruffy" (who says, "Wurf!").
 // Then display their names and what they say.
 //Exercise 6:  Following Exercise 5, create a new Dog reference and assign it to spot’s object.
 // Test for comparison using == and equals( ) for all references.
