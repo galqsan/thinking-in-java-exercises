@@ -1,7 +1,7 @@
 package volume.three;
 
 import java.util.Random;
-//Exercise 3: Modify Exercise 2 so that your code is surrounded by an “infinite” while loop.
+//Exercise 3: Modify Exercise 2 so that your code is surrounded by an "infinite" while loop.
 // It will then run until you interrupt it from the keyboard (typically by pressing Control-C).
 public class ExerciseTwo {
     public static void main(String[] args) {
