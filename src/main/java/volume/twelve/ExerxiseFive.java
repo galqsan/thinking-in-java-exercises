@@ -10,7 +10,7 @@ public class ExerxiseFive {
     public static void main(String[] args) {
         Formatter f = new Formatter(System.out);
         char c = 'a';
-        System.out.println("c = ‘a’");
+        System.out.println("c ='a'");
         f.format("s: %1$-5s\n", c);
         f.format("c: %1$-5c\n", c);
         f.format("b: %1$-5.5b\n", c);
