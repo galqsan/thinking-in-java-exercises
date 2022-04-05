@@ -4,6 +4,8 @@ import static net.mindview.util.Print.print;
 
 /*Exercise 1: In ToyTest.java, comment out Toy’s default constructor and explain
 what happens.*/
+/*Exercise 2: Incorporate a new kind of interface into ToyTest.java and verify that it
+is detected and displayed properly. */
 interface HasBatteries {
 }
 
@@ -11,6 +13,9 @@ interface Waterproof {
 }
 
 interface Shoots {
+}
+
+interface Moves {
 }
 
 class Toy {
@@ -22,7 +27,7 @@ class Toy {
 }
 
 class FancyToy extends Toy
-        implements HasBatteries, Waterproof, Shoots {
+        implements HasBatteries, Waterproof, Shoots, Moves {
     FancyToy() {
         super(1);
     }
